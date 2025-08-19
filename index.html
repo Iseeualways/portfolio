@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amit Shet | Frontend Developer</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Goldman:wght@400;700&family=Kings&family=Lavishly+Yours&family=Libre+Caslon+Display&family=Mountains+of+Christmas:wght@400;700&family=Orbitron:wght@400..900&family=Oswald:wght@200..700&family=Parisienne&family=Saira+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Locomotive Scroll -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll/dist/locomotive-scroll.min.css">
+
+  <!-- Custom CSS -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      overflow-x: hidden;
+      font-family: "Cinzel", serif;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      opacity: 0.8;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 6rem 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #ff004f;
+    }
+
+    /* Projects grid */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(580px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0);
+      /* transparent feel */
+      border-radius: 20px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      /* glass effect */
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      /* subtle border */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      /* soft shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .project-card p {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0.5rem;
+    }
+
+
+    /* Resume */
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      border: 2px solid #ff004f;
+      border-radius: 30px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    .btn:hover {
+      background: #ff004f;
+      transform: scale(1.05);
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+    }
+
+    .contact p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    #tech-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      /* keeps it in the background */
+      background: #0000002a;
+    }
+
+    #about {
+      padding: 80px 20px;
+
+      /* subtle transparent bg */
+
+      border-radius: 16px;
+      max-width: 1400px;
+      margin: auto;
+      color: #fff;
+      text-align: left;
+    }
+
+    #about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #about h3 {
+      margin-top: 25px;
+      color: #ff4d4d;
+    }
+
+    .skills,
+    .projects-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .skills li,
+    .projects-list li {
+      margin: 8px 0;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .skills li::before,
+    .projects-list li::before {
+      content: "▹";
+      color: #ff4d4d;
+      position: absolute;
+      left: 0;
+    }
+
+    .highlight {
+      color: #ff4d4d;
+      font-weight: bold;
+    }
+
+    #contact a{
+      color: #fff;
+    }
+
+    #contact a:hover{
+      color: rgb(217, 30, 30);
+    }
+  </style>
+</head>
+
+<body data-scroll-container>
+  <canvas id="tech-bg"></canvas>
+
+  <!-- HERO -->
+  <header data-scroll-section>
+    <h1 data-scroll data-scroll-speed="2">Amit Shet</h1>
+    <p data-scroll data-scroll-speed="1">Frontend Developer | Web Designer</p>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" data-scroll-section>
+    <h2 data-scroll data-scroll-speed="2">About Me</h2>
+
+    <div class="about-container" data-scroll data-scroll-speed="1">
+      <p>
+        Hi I’m a <strong>Frontend Developer</strong> passionate about creating
+        <span class="highlight">modern, responsive, and animated web experiences</span>.
+        I enjoy blending clean code with engaging design to build websites that not only work
+        seamlessly but also feel great to use.
+      </p>
+
+      <h3>🎯 Skills</h3>
+      <ul class="skills">
+        <li>HTML5, CSS3, Bootstrap, JavaScript</li>
+        <li>JavaScript (ES6+), GSAP Animations</li>
+        <li>React, Tailwind CSS</li>
+        <li>UI/UX Design & Prototyping</li>
+        <li>Git & GitHub (Portfolio Hosting)</li>
+      </ul>
+
+      <h3>💡 Passion</h3>
+      <p>
+        I love designing experiences that combine
+        <strong>creativity + functionality</strong>.
+        Currently, I’m exploring <em>scroll-driven animations</em> and aiming to create
+        <span class="highlight">award-level websites</span>.
+      </p>
+
+      <h3>🚀 Projects I’ve Worked On</h3>
+      <ul class="projects-list">
+        <li><strong>AMCA:</strong> Academic management & UI improvements</li>
+        <li><strong>MS Plast:</strong> Modern redesign with animations & responsive layouts</li>
+        <li><strong>Samay:</strong> Smooth interactive UI with scroll-triggered effects</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- PROJECTS -->
+  <section id="projects" data-scroll-section>
+    <h2 data-scroll data-scroll-speed="2">Projects</h2>
+    <div class="projects">
+      <div class="project-card" data-scroll data-scroll-speed="1">
+        <!-- Swiper Container -->
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <img src="images/Screenshot (111).png" alt="Countdown Timer Screenshot 1">
+            </div>
+            <div class="swiper-slide">
+              <img src="images/Screenshot (112).png" alt="Countdown Timer Screenshot 2">
+            </div>
+            <div class="swiper-slide">
+              <img src="images/Screenshot (114).png" alt="Countdown Timer Screenshot 3">
+            </div>
+            <div class="swiper-slide">
+              <img src="images/Screenshot (116).png" alt="Countdown Timer Screenshot 4">
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Details -->
+        <h3>Explicite Watch webpage</h3>
+        <p>Responsive timer for product launches using HTML, CSS, JavaScript, GSAP, ScrollTrigger</p>
+        <p><strong>Tech Used:</strong> HTML, CSS, JavaScript, GSAP, ScrollTrigger.</p>
+      </div>
+      <div class="project-card" data-scroll data-scroll-speed="1">
+        <!-- Swiper Container -->
+        <div class="swiper project-swiper">
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+              <img src="images/Screenshot (118).png" alt="Countdown Timer Screenshot 1">
+            </div>
+            <div class="swiper-slide">
+              <img src="images/Screenshot (119).png" alt="Countdown Timer Screenshot 2">
+            </div>
+            <div class="swiper-slide">
+              <img src="images/Screenshot (120).png" alt="Countdown Timer Screenshot 3">
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Details -->
+        <h3>Light Website</h3>
+        <p>Responsive Website for products launches using HTML, CSS, JS.</p>
+        <p><strong>Tech Used:</strong> HTML, CSS, JavaScript</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume" data-scroll-section>
+    <h2 data-scroll data-scroll-speed="2">Resume</h2>
+    <a href="Resume.pdf" download class="btn" data-scroll data-scroll-speed="1">Download My Resume</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact" data-scroll-section>
+    <h2 data-scroll data-scroll-speed="2">Contact</h2>
+    <p>Email: <a href="mailto:amitshet42@gmail.com">amitshet42@gmail.com</a></p>
+    <p>Connect: <a href="tel:+917022178930">+91 7022178930</a></p>
+
+  </section>
+
+  <!-- Scripts -->
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Locomotive Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+
+  <!-- Swiper -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    // Init Locomotive
+    const locoScroll = new LocomotiveScroll({
+      el: document.querySelector("[data-scroll-container]"),
+      smooth: true,
+      multiplier: 1.2
+    });
+
+    // Update ScrollTrigger on scroll
+    locoScroll.on("scroll", ScrollTrigger.update);
+
+    // Tell ScrollTrigger to use locomotive as proxy
+    ScrollTrigger.scrollerProxy("[data-scroll-container]", {
+      scrollTop(value) {
+        return arguments.length
+          ? locoScroll.scrollTo(value, 0, 0)
+          : locoScroll.scroll.instance.scroll.y;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0, left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight
+        };
+      },
+      pinType: document.querySelector("[data-scroll-container]").style.transform ? "transform" : "fixed"
+    });
+
+    // GSAP Animations
+    gsap.from("header h1", {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: "header h1",
+        scroller: "[data-scroll-container]"
+      }
+    });
+
+    gsap.from("header p", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.5,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: "header p",
+        scroller: "[data-scroll-container]"
+      }
+    });
+
+    // Refresh both on window resize / load
+    ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+    ScrollTrigger.refresh();
+  </script>
+
+  <!-- Particle Background -->
+  <script>
+    const canvas = document.getElementById("tech-bg");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = 2;
+        this.speedX = (Math.random() - 0.5) * 1.5;
+        this.speedY = (Math.random() - 0.5) * 1.5;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = "#ff004f";
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particles = [];
+      for (let i = 0; i < 140; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function connect() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a; b < particles.length; b++) {
+          let dx = particles[a].x - particles[b].x;
+          let dy = particles[a].y - particles[b].y;
+          let distance = dx * dx + dy * dy;
+          if (distance < 40000) {
+            ctx.beginPath();
+            ctx.strokeStyle = "rgba(255,0,209,0.2)";
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      connect();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    init();
+    animate();
+  </script>
+
+  <!-- Swiper for projects -->
+  <script>
+    const projectSwiper = new Swiper(".project-swiper", {
+      loop: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      effect: "fade",
+      speed: 1000,
+    });
+  </script>
+
+
+
+</body>
+
+</html>
